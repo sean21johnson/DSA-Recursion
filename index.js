@@ -139,9 +139,120 @@ function printAnagrams(word, prefix = "") {
     return result;
 }
 
-//question 11
+//question 11 - Organization Chart 
+/**
+ * Organization chart
+ * Printing out a single level should be simple: just loop through the keys and
+ * print them.  Then you can recurse into the object to print the deeper levels.
+ * For keeping track of the indent level, pass an increasing integer through
+ * each recursive call.
+ */
 
-//question 12
+ function printOrgChart(orgChart, indent = 0) {
+     //Implicit base case is that there are no deeper levels in the org chart
+     let spaces = "  ".repeat(indent);
+     for (let key in orgChart) {
+         console.log(spaces + key);
+         printOrgChart(orgChart[key], indent + 1);
+     }
+ }
+
+const organization = {
+    Zuckerberg: {
+      Schroepfer: {
+        Bosworth: {
+          Steve: {},
+          Kyle: {},
+          Andra: {},
+        },
+        Zhao: {
+          Richie: {},
+          Sofia: {},
+          Jen: {},
+        },
+        Badros: {
+          John: {},
+          Mike: {},
+          Pat: {},
+        },
+        Parikh: {
+          Zach: {},
+          Ryan: {},
+          Tes: {},
+        },
+      },
+      Schrage: {
+        VanDyck: {
+          Sabrina: {},
+          Michelle: {},
+          Josh: {},
+        },
+        Swain: {
+          Blanch: {},
+          Tom: {},
+          Joe: {},
+        },
+        Frankovsky: {
+          Jasee: {},
+          Brian: {},
+          Margaret: {},
+        },
+      },
+      Sandberg: {
+        Goler: {
+          Eddie: {},
+          Julie: {},
+          Annie: {},
+        },
+        Hernandez: {
+          Rowi: {},
+          Inga: {},
+          Morgan: {},
+        },
+        Moissinac: {
+          Amy: {},
+          Chuck: {},
+          Vinni: {},
+        },
+        Kelley: {
+          Eric: {},
+          Ana: {},
+          Wes: {},
+        },
+      },
+    },
+  };
+
+
+//question 12 - Binary Representation
+/**
+ * Binary representation
+ * What's the base case? If the value is just 0 or 1, then that's the binary
+ * representation.
+ * Approach: Slice off one bit at a time, working out whether it's zero or one,
+ * until we only have a single bit left (the base case).
+ * How do we work out whether a single bit is 0 or 1?
+ * Even numbers have a 0 as the smallest bit, and odd numbers have a 1 as the
+ * smallest bit.  So we can use a modulo 2 to isolate a single bit.
+ * How do we move through the bits?  Dividing by two is the same as
+ * shifting off a single bit.
+ * For example, decimal 10 is binary 1010.  Decimal 5 is 101.  Notice how to
+ * divide by two, we have just chopped off the last bit.
+ */
+
+function toBinary(input) {
+    if (input === 0 || input === 1) {
+      return String(input);
+    }
+  
+    let leastSignificantBit = input % 2;
+    let otherBits = Math.floor(input / 2);
+    return toBinary(otherBits) + String(leastSignificantBit);
+  }
+  
+  for (let i=0; i<10; i++) {
+    console.log(toBinary(i));
+  }
 
 
 
